@@ -1,173 +1,168 @@
-# bolt.diy (Previously oTToDev)
-[![bolt.diy: AI-Powered Full-Stack Web Development in the Browser](./public/social_preview_index.jpg)](https://bolt.diy)
+# bolt.diy (旧 oTToDev)
+[![bolt.diy: ブラウザ上でAI駆動のフルスタックWeb開発](./public/social_preview_index.jpg)](https://bolt.diy)
 
-Welcome to bolt.diy, the official open source version of Bolt.new (previously known as oTToDev and bolt.new ANY LLM), which allows you to choose the LLM that you use for each prompt! Currently, you can use OpenAI, Anthropic, Ollama, OpenRouter, Gemini, LMStudio, Mistral, xAI, HuggingFace, DeepSeek, or Groq models - and it is easily extended to use any other model supported by the Vercel AI SDK! See the instructions below for running this locally and extending it to include more models.
+bolt.diyへようこそ。これはBolt.new（以前はoTToDevやbolt.new ANY LLMとして知られていた）の公式オープンソースバージョンで、各プロンプトで使用するLLMを選択できます！現在、OpenAI、Anthropic、Ollama、OpenRouter、Gemini、LMStudio、Mistral、xAI、HuggingFace、DeepSeek、Groqのモデルを使用でき、Vercel AI SDKでサポートされている他のモデルにも簡単に拡張できます！ローカルでの実行方法や、より多くのモデルを追加する方法については、以下の説明をご覧ください。
 
-Check the [bolt.diy Docs](https://stackblitz-labs.github.io/bolt.diy/) for more information. 
+詳細については[bolt.diy ドキュメント](https://stackblitz-labs.github.io/bolt.diy/)をご確認ください。
 
-We have also launched an experimental agent called the "bolt.diy Expert" that can answer common questions about bolt.diy. Find it here on the [oTTomator Live Agent Studio](https://studio.ottomator.ai/).
+また、bolt.diyに関する一般的な質問に答えることができる実験的なエージェント「bolt.diy Expert」を[oTTomator Live Agent Studio](https://studio.ottomator.ai/)で公開しています。
 
-bolt.diy was originally started by [Cole Medin](https://www.youtube.com/@ColeMedin) but has quickly grown into a massive community effort to build the BEST open source AI coding assistant!
+bolt.diyは元々[Cole Medin](https://www.youtube.com/@ColeMedin)によって開始されましたが、最高のオープンソースAIコーディングアシスタントを構築するための大規模なコミュニティの取り組みへと急速に成長しました！
 
-## Table of Contents
+## 目次
 
-- [Join the Community](#join-the-community)
-- [Requested Additions](#requested-additions)
-- [Features](#features)
-- [Setup](#setup)
-- [Run the Application](#run-the-application)
-- [Available Scripts](#available-scripts)
-- [Contributing](#contributing)
-- [Roadmap](#roadmap)
+- [コミュニティに参加](#コミュニティに参加)
+- [要望された追加機能](#要望された追加機能)
+- [機能](#機能)
+- [セットアップ](#セットアップ)
+- [アプリケーションの実行](#アプリケーションの実行)
+- [利用可能なスクリプト](#利用可能なスクリプト)
+- [貢献方法](#貢献方法)
+- [ロードマップ](#ロードマップ)
 - [FAQ](#faq)
 
-## Join the community
+## コミュニティに参加
 
-[Join the bolt.diy community here, in the thinktank on ottomator.ai!](https://thinktank.ottomator.ai)
+[ottomator.aiのthinktankでbolt.diyコミュニティに参加しましょう！](https://thinktank.ottomator.ai)
 
+## 要望された追加機能
 
-## Requested Additions
+- ✅ OpenRouter統合 (@coleam00)
+- ✅ Gemini統合 (@jonathands)
+- ✅ ダウンロード済みOllamaモデルの自動生成 (@yunatamos)
+- ✅ プロバイダーによるモデルのフィルタリング (@jasonm23)
+- ✅ プロジェクトをZIPとしてダウンロード (@fabwaseem)
+- ✅ `app\lib\.server\llm\prompts.ts`のbolt.newプロンプトの改善 (@kofi-bhr)
+- ✅ DeepSeek API統合 (@zenith110)
+- ✅ Mistral API統合 (@ArulGandhi)
+- ✅ "Open AI Like" API統合 (@ZerxZ)
+- ✅ ローカルフォルダへのファイル同期（一方向同期） (@muzafferkadir)
+- ✅ 簡単なインストールのためのDockerコンテナ化 (@aaronbolton)
+- ✅ GitHubへの直接プロジェクト公開 (@goncaloalves)
+- ✅ UI上でのAPIキー入力機能 (@ali00209)
+- ✅ xAI Grok Beta統合 (@milutinke)
+- ✅ LM Studio統合 (@karrot0)
+- ✅ HuggingFace統合 (@ahsan3219)
+- ✅ LLMコマンド出力を表示するBoltターミナル (@thecodacus)
+- ✅ コード出力のストリーミング (@thecodacus)
+- ✅ 以前のバージョンへのコード復元機能 (@wonderwhy-er)
+- ✅ Cohere統合 (@hasanraiyan)
+- ✅ 動的なモデル最大トークン長 (@hasanraiyan)
+- ✅ プロンプト強化の改善 (@SujalXplores)
+- ✅ プロンプトのキャッシング (@SujalXplores)
+- ✅ ローカルプロジェクトのアプリへの読み込み (@wonderwhy-er)
+- ✅ Together統合 (@mouimet-infinisoft)
+- ✅ モバイル対応 (@qwikode)
+- ✅ プロンプト強化の改善 (@SujalXplores)
+- ✅ プロンプトへの画像添付 (@atrokhym)
+- ✅ Gitクローンボタンの追加 (@thecodacus)
+- ✅ URLからのGitインポート (@thecodacus)
+- ✅ 様々なユースケース用のプロンプトバリエーション (@thecodacus)
+- ✅ フォルダーとGitインポート用のpackage.jsonとコマンドの自動検出 (@wonderwhy-er)
+- ✅ 変更を視覚的にターゲットにする選択ツール (@emcconnell)
+- ✅ ターミナルエラーの検出とboltによる修正 (@thecodacus)
+- ✅ プレビューエラーの検出とboltによる修正 (@wonderwhy-er)
+- ✅ スターターテンプレートオプションの追加 (@thecodacus)
+- ⬜ **高優先度** - ファイルの頻繁な書き換えを防止（ファイルロックと差分）
+- ⬜ **高優先度** - 小規模LLM向けのより良いプロンプト（コードウィンドウが時々開始しない）
+- ⬜ **高優先度** - 単一のモデル呼び出しではなくバックエンドでのエージェント実行
+- ⬜ Vercel/Netlify/その他類似プラットフォームへの直接デプロイ
+- ⬜ より良い結果/透明性のためのMDファイルでのLLMプロジェクト計画
+- ⬜ git風の確認を伴うVSCode統合
+- ⬜ 知識のためのドキュメントアップロード - UIデザインテンプレート、コーディングスタイル参照用のコードベースなど
+- ⬜ 音声プロンプト
+- ⬜ Azure Open AI API統合
+- ✅ Perplexity統合 (@meetpateltech)
+- ⬜ Vertex AI統合
 
-- ✅ OpenRouter Integration (@coleam00)
-- ✅ Gemini Integration (@jonathands)
-- ✅ Autogenerate Ollama models from what is downloaded (@yunatamos)
-- ✅ Filter models by provider (@jasonm23)
-- ✅ Download project as ZIP (@fabwaseem)
-- ✅ Improvements to the main bolt.new prompt in `app\lib\.server\llm\prompts.ts` (@kofi-bhr)
-- ✅ DeepSeek API Integration (@zenith110)
-- ✅ Mistral API Integration (@ArulGandhi)
-- ✅ "Open AI Like" API Integration (@ZerxZ)
-- ✅ Ability to sync files (one way sync) to local folder (@muzafferkadir)
-- ✅ Containerize the application with Docker for easy installation (@aaronbolton)
-- ✅ Publish projects directly to GitHub (@goncaloalves)
-- ✅ Ability to enter API keys in the UI (@ali00209)
-- ✅ xAI Grok Beta Integration (@milutinke)
-- ✅ LM Studio Integration (@karrot0)
-- ✅ HuggingFace Integration (@ahsan3219)
-- ✅ Bolt terminal to see the output of LLM run commands (@thecodacus)
-- ✅ Streaming of code output (@thecodacus)
-- ✅ Ability to revert code to earlier version (@wonderwhy-er)
-- ✅ Cohere Integration (@hasanraiyan)
-- ✅ Dynamic model max token length (@hasanraiyan)
-- ✅ Better prompt enhancing (@SujalXplores)
-- ✅ Prompt caching (@SujalXplores)
-- ✅ Load local projects into the app (@wonderwhy-er)
-- ✅ Together Integration (@mouimet-infinisoft)
-- ✅ Mobile friendly (@qwikode)
-- ✅ Better prompt enhancing (@SujalXplores)
-- ✅ Attach images to prompts (@atrokhym)
-- ✅ Added Git Clone button (@thecodacus)
-- ✅ Git Import from url (@thecodacus)
-- ✅ PromptLibrary to have different variations of prompts for different use cases (@thecodacus)
-- ✅ Detect package.json and commands to auto install & run preview for folder and git import (@wonderwhy-er)
-- ✅ Selection tool to target changes visually (@emcconnell)
-- ✅ Detect terminal Errors and ask bolt to fix it (@thecodacus)
-- ✅ Detect preview Errors and ask bolt to fix it (@wonderwhy-er)
-- ✅ Add Starter Template Options (@thecodacus)
-- ⬜ **HIGH PRIORITY** - Prevent bolt from rewriting files as often (file locking and diffs)
-- ⬜ **HIGH PRIORITY** - Better prompting for smaller LLMs (code window sometimes doesn't start)
-- ⬜ **HIGH PRIORITY** - Run agents in the backend as opposed to a single model call
-- ⬜ Deploy directly to Vercel/Netlify/other similar platforms
-- ⬜ Have LLM plan the project in a MD file for better results/transparency
-- ⬜ VSCode Integration with git-like confirmations
-- ⬜ Upload documents for knowledge - UI design templates, a code base to reference coding style, etc.
-- ⬜ Voice prompting
-- ⬜ Azure Open AI API Integration
-- ✅ Perplexity Integration (@meetpateltech)
-- ⬜ Vertex AI Integration
+## 機能
 
-## Features
+- ブラウザ上で直接**AI駆動のフルスタックWeb開発**
+- 追加モデルを統合できる拡張可能なアーキテクチャによる**複数のLLMのサポート**
+- より良い文脈理解のための**プロンプトへの画像添付**
+- LLM実行コマンドの出力を表示する**統合ターミナル**
+- デバッグと迅速な変更のための**以前のバージョンへのコード復元**
+- 簡単な移植性のための**プロジェクトのZIPダウンロード**
+- 手間のないセットアップのための**統合準備済みのDockerサポート**
 
-- **AI-powered full-stack web development** directly in your browser.
-- **Support for multiple LLMs** with an extensible architecture to integrate additional models.
-- **Attach images to prompts** for better contextual understanding.
-- **Integrated terminal** to view output of LLM-run commands.
-- **Revert code to earlier versions** for easier debugging and quicker changes.
-- **Download projects as ZIP** for easy portability.
-- **Integration-ready Docker support** for a hassle-free setup.
+## セットアップ
 
-## Setup 
+GitHubからソフトウェアをインストールするのが初めての方でも心配いりません！問題が発生した場合は、提供されているリンクを使用して「issue」を提出するか、リポジトリをフォークし、説明を編集してプルリクエストを提出することで、このドキュメントを改善できます。以下の手順で、安定版のBolt.DIYをローカルマシンで迅速に実行できます。
 
-If you're new to installing software from GitHub, don't worry! If you encounter any issues, feel free to submit an "issue" using the provided links or improve this documentation by forking the repository, editing the instructions, and submitting a pull request. The following instruction will help you get the stable branch up and running on your local machine in no time.  
+## クイックダウンロード
 
-Let's get you up and running with the stable version of Bolt.DIY!
+[![最新リリースをダウンロード](https://img.shields.io/github/v/release/stackblitz-labs/bolt.diy?label=Download%20Bolt&sort=semver)](https://github.com/stackblitz-labs/bolt.diy/releases/latest) ← クリックして最新リリースバージョンに移動！
 
-## Quick Download
-
-[![Download Latest Release](https://img.shields.io/github/v/release/stackblitz-labs/bolt.diy?label=Download%20Bolt&sort=semver)](https://github.com/stackblitz-labs/bolt.diy/releases/latest) ← Click here to go the the latest release version! 
-
-- Next **click source.zip**
+- 次に**source.zip**をクリックしてください
 
 
+## 前提条件
 
+開始する前に、2つの重要なソフトウェアをインストールする必要があります：
 
-## Prerequisites
+### Node.jsのインストール
 
-Before you begin, you'll need to install two important pieces of software:
+アプリケーションの実行にはNode.jsが必要です。
 
-### Install Node.js
-
-Node.js is required to run the application.
-
-1. Visit the [Node.js Download Page](https://nodejs.org/en/download/)
-2. Download the "LTS" (Long Term Support) version for your operating system
-3. Run the installer, accepting the default settings
-4. Verify Node.js is properly installed:
-   - **For Windows Users**:
-     1. Press `Windows + R`
-     2. Type "sysdm.cpl" and press Enter
-     3. Go to "Advanced" tab → "Environment Variables"
-     4. Check if `Node.js` appears in the "Path" variable
-   - **For Mac/Linux Users**:
-     1. Open Terminal
-     2. Type this command:
+1. [Node.jsダウンロードページ](https://nodejs.org/en/download/)にアクセス
+2. お使いのOSに合わせて「LTS」（Long Term Support）バージョンをダウンロード
+3. インストーラーを実行し、デフォルト設定を受け入れる
+4. Node.jsが正しくインストールされたことを確認：
+   - **Windowsユーザーの場合**：
+     1. `Windows + R`キーを押す
+     2. "sysdm.cpl"と入力してEnterを押す
+     3. 「詳細設定」タブ→「環境変数」に移動
+     4. 「Path」変数に`Node.js`が表示されているか確認
+   - **Mac/Linuxユーザーの場合**：
+     1. ターミナルを開く
+     2. 以下のコマンドを入力：
         ```bash
         echo $PATH
         ```
-     3. Look for `/usr/local/bin` in the output
+     3. 出力に`/usr/local/bin`が含まれているか確認
 
-## Running the Application
+## アプリケーションの実行
 
-You have two options for running Bolt.DIY: directly on your machine or using Docker.
+Bolt.DIYの実行には2つの選択肢があります：直接マシン上で実行するか、Dockerを使用するか。
 
-### Option 1: Direct Installation (Recommended for Beginners)
+### オプション1：直接インストール（初心者向け推奨）
 
-1. **Install Package Manager (pnpm)**:
+1. **パッケージマネージャー（pnpm）のインストール**：
    ```bash
    npm install -g pnpm
    ```
 
-2. **Install Project Dependencies**:
+2. **プロジェクトの依存関係をインストール**：
    ```bash
    pnpm install
    ```
 
-3. **Start the Application**:
+3. **アプリケーションの起動**：
    ```bash
    pnpm run dev
    ```
 
-   **Important Note**: If you're using Google Chrome, you'll need Chrome Canary for local development. [Download it here](https://www.google.com/chrome/canary/)
+   **重要な注意**: Google Chromeを使用している場合、ローカル開発にはChrome Canaryが必要です。[ここからダウンロード](https://www.google.com/chrome/canary/)
 
-### Option 2: Using Docker
+### オプション2：Dockerの使用
 
-This option requires some familiarity with Docker but provides a more isolated environment.
+このオプションにはDockerの基本的な知識が必要ですが、より分離された環境を提供します。
 
-#### Additional Prerequisite
-- Install Docker: [Download Docker](https://www.docker.com/)
+#### 追加の前提条件
+- Dockerのインストール：[Dockerのダウンロード](https://www.docker.com/)
 
-#### Steps:
+#### 手順：
 
-1. **Build the Docker Image**:
+1. **Dockerイメージのビルド**：
    ```bash
-   # Using npm script:
+   # npmスクリプトを使用：
    npm run dockerbuild
 
-   # OR using direct Docker command:
+   # または直接Dockerコマンドを使用：
    docker build . --target bolt-ai-development
    ```
 
-2. **Run the Container**:
+2. **コンテナの実行**：
    ```bash
    docker-compose --profile development up
    ```
@@ -175,152 +170,145 @@ This option requires some familiarity with Docker but provides a more isolated e
 
 
 
-## Configuring API Keys and Providers
+## APIキーとプロバイダーの設定
 
-### Adding Your API Keys
+### APIキーの追加
 
-Setting up your API keys in Bolt.DIY is straightforward:
+Bolt.DIYでのAPIキーの設定は簡単です：
 
-1. Open the home page (main interface)
-2. Select your desired provider from the dropdown menu
-3. Click the pencil (edit) icon
-4. Enter your API key in the secure input field
+1. ホームページ（メインインターフェース）を開く
+2. ドロップダウンメニューから希望のプロバイダーを選択
+3. 鉛筆（編集）アイコンをクリック
+4. セキュアな入力フィールドにAPIキーを入力
 
-![API Key Configuration Interface](./docs/images/api-key-ui-section.png)
+![APIキー設定インターフェース](./docs/images/api-key-ui-section.png)
 
-### Configuring Custom Base URLs
+### カスタムベースURLの設定
 
-For providers that support custom base URLs (such as Ollama or LM Studio), follow these steps:
+カスタムベースURLをサポートするプロバイダー（OllamaやLM Studioなど）の場合、以下の手順に従ってください：
 
-1. Click the settings icon in the sidebar to open the settings menu
-   ![Settings Button Location](./docs/images/bolt-settings-button.png)
+1. サイドバーの設定アイコンをクリックして設定メニューを開く
+   ![設定ボタンの場所](./docs/images/bolt-settings-button.png)
 
-2. Navigate to the "Providers" tab
-3. Search for your provider using the search bar
-4. Enter your custom base URL in the designated field
-   ![Provider Base URL Configuration](./docs/images/provider-base-url.png)
+2. 「プロバイダー」タブに移動
+3. 検索バーを使用してプロバイダーを検索
+4. 指定されたフィールドにカスタムベースURLを入力
+   ![プロバイダーベースURL設定](./docs/images/provider-base-url.png)
 
-> **Note**: Custom base URLs are particularly useful when running local instances of AI models or using custom API endpoints.
+> **注意**: カスタムベースURLは、ローカルでAIモデルを実行する場合やカスタムAPIエンドポイントを使用する場合に特に便利です。
 
-### Supported Providers
+### サポートされているプロバイダー
 - Ollama
 - LM Studio
 - OpenAILike
 
-## Setup Using Git (For Developers only)
+## Gitを使用したセットアップ（開発者向け）
 
-This method is recommended for developers who want to:
-- Contribute to the project
-- Stay updated with the latest changes
-- Switch between different versions
-- Create custom modifications
+この方法は以下を目的とする開発者向けに推奨されます：
+- プロジェクトへの貢献
+- 最新の変更への追従
+- 異なるバージョン間の切り替え
+- カスタム修正の作成
 
-#### Prerequisites
-1. Install Git: [Download Git](https://git-scm.com/downloads)
+#### 前提条件
+1. Gitのインストール：[Gitのダウンロード](https://git-scm.com/downloads)
 
-#### Initial Setup
+#### 初期セットアップ
 
-1. **Clone the Repository**:
+1. **リポジトリのクローン**：
    ```bash
-   # Using HTTPS
+   # HTTPSを使用
    git clone https://github.com/stackblitz-labs/bolt.diy.git
    ```
 
-2. **Navigate to Project Directory**:
+2. **プロジェクトディレクトリへ移動**：
    ```bash
    cd bolt.diy
    ```
 
-3. **Switch to the Main Branch**:
+3. **メインブランチへ切り替え**：
    ```bash
    git checkout main
    ```
-4. **Install Dependencies**:
+
+4. **依存関係のインストール**：
    ```bash
    pnpm install
    ```
 
-5. **Start the Development Server**:
+5. **開発サーバーの起動**：
    ```bash
    pnpm run dev
    ```
 
-#### Staying Updated
+#### 最新状態の維持
 
-To get the latest changes from the repository:
+リポジトリから最新の変更を取得するには：
 
-1. **Save Your Local Changes** (if any):
+1. **ローカルの変更を保存**（ある場合）：
    ```bash
    git stash
    ```
 
-2. **Pull Latest Updates**:
+2. **最新の更新を取得**：
    ```bash
    git pull origin main
    ```
 
-3. **Update Dependencies**:
+3. **依存関係の更新**：
    ```bash
    pnpm install
    ```
 
-4. **Restore Your Local Changes** (if any):
+4. **ローカルの変更を復元**（ある場合）：
    ```bash
    git stash pop
    ```
 
-#### Troubleshooting Git Setup
+#### Gitセットアップのトラブルシューティング
 
-If you encounter issues:
+問題が発生した場合：
 
-1. **Clean Installation**:
+1. **クリーンインストール**：
    ```bash
-   # Remove node modules and lock files
+   # node_modulesとロックファイルの削除
    rm -rf node_modules pnpm-lock.yaml
 
-   # Clear pnpm cache
+   # pnpmキャッシュのクリア
    pnpm store prune
 
-   # Reinstall dependencies
+   # 依存関係の再インストール
    pnpm install
    ```
 
-2. **Reset Local Changes**:
+2. **ローカルの変更をリセット**：
    ```bash
-   # Discard all local changes
+   # すべてのローカル変更を破棄
    git reset --hard origin/main
    ```
 
-Remember to always commit your local changes or stash them before pulling updates to avoid conflicts.
+コンフリクトを避けるため、更新を取得する前に必ずローカルの変更をコミットするかスタッシュしてください。
 
----
+## 利用可能なスクリプト
 
-## Available Scripts
+- **`pnpm run dev`**: 開発サーバーを起動
+- **`pnpm run build`**: プロジェクトをビルド
+- **`pnpm run start`**: Wrangler Pagesを使用してビルドしたアプリケーションをローカルで実行
+- **`pnpm run preview`**: プロダクションビルドをローカルでビルドして実行
+- **`pnpm test`**: Vitestを使用してテストスイートを実行
+- **`pnpm run typecheck`**: TypeScriptの型チェックを実行
+- **`pnpm run typegen`**: Wranglerを使用してTypeScript型を生成
+- **`pnpm run deploy`**: プロジェクトをCloudflare Pagesにデプロイ
+- **`pnpm run lint:fix`**: リンティングの問題を自動修正
 
-- **`pnpm run dev`**: Starts the development server.
-- **`pnpm run build`**: Builds the project.
-- **`pnpm run start`**: Runs the built application locally using Wrangler Pages.
-- **`pnpm run preview`**: Builds and runs the production build locally.
-- **`pnpm test`**: Runs the test suite using Vitest.
-- **`pnpm run typecheck`**: Runs TypeScript type checking.
-- **`pnpm run typegen`**: Generates TypeScript types using Wrangler.
-- **`pnpm run deploy`**: Deploys the project to Cloudflare Pages.
-- **`pnpm run lint:fix`**: Automatically fixes linting issues.
+## 貢献方法
 
----
+貢献を歓迎します！始めるには[貢献ガイド](CONTRIBUTING.md)をご確認ください。
 
-## Contributing
+## ロードマップ
 
-We welcome contributions! Check out our [Contributing Guide](CONTRIBUTING.md) to get started.
-
----
-
-## Roadmap
-
-Explore upcoming features and priorities on our [Roadmap](https://roadmap.sh/r/ottodev-roadmap-2ovzo).
-
----
+今後の機能と優先事項については[ロードマップ](https://roadmap.sh/r/ottodev-roadmap-2ovzo)をご覧ください。
 
 ## FAQ
 
-For answers to common questions, issues, and to see a list of recommended models, visit our [FAQ Page](FAQ.md).
+一般的な質問、問題、推奨モデルのリストについては[FAQページ](FAQ.md)をご覧ください。
